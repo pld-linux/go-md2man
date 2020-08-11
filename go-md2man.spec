@@ -1,12 +1,14 @@
 Summary:	Process markdown into manpages
 Name:		go-md2man
 Version:	1.0.5
-Release:	0.1
+Release:	1
 License:	MIT
 Group:		Development/Tools
 Source0:	https://github.com/cpuguy83/go-md2man/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	b334c263e113280ec1e9420801b3d452
 URL:		https://github.com/cpuguy83/go-md2man
+BuildRequires:	golang
+BuildRequires:	golang-github-russross-blackfriday-devel
 ExclusiveArch:	%{ix86} %{x8664} %{arm}
 
 %define		_enable_debug_packages 0
