@@ -9,7 +9,7 @@ Source0:	https://github.com/cpuguy83/go-md2man/archive/v%{version}/%{name}-%{ver
 URL:		https://github.com/cpuguy83/go-md2man
 BuildRequires:	golang
 BuildRequires:	golang-github-russross-blackfriday-devel
-ExclusiveArch:	%{ix86} %{x8664} %{arm}
+ExclusiveArch:	%{ix86} %{x8664} %{arm} aarch64 mips64 mips64le ppc64 ppc64le s390x
 
 %define		_enable_debug_packages 0
 %define		gobuild(o:) go build -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
