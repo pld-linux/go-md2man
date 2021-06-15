@@ -1,18 +1,18 @@
 Summary:	Process markdown into manpages
 Name:		go-md2man
-Version:	1.0.5
+Version:	1.0.10
 Release:	1
 License:	MIT
 Group:		Development/Tools
 Source0:	https://github.com/cpuguy83/go-md2man/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	b334c263e113280ec1e9420801b3d452
+# Source0-md5:	2f2ab80cbee456548790449a26cc2edc
 URL:		https://github.com/cpuguy83/go-md2man
 BuildRequires:	golang
 BuildRequires:	golang-github-russross-blackfriday-devel
 ExclusiveArch:	%{ix86} %{x8664} %{arm} aarch64 mips64 mips64le ppc64 ppc64le s390x
 
 %define		_enable_debug_packages 0
-%define		gobuild(o:) go build -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
+%define		gobuild(o:) go build -mod=vendor -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
 
 %description
 go-md2man is a golang tool using blackfriday to process markdown into
@@ -25,7 +25,7 @@ mkdir -p src/github.com/cpuguy83
 ln -s ../../../ src/github.com/cpuguy83/go-md2man
 
 %build
-export GOPATH=$(pwd)
+export GOCACHE=$(pwd)/.go-cache
 
 %gobuild -o bin/go-md2man github.com/cpuguy83/go-md2man
 
