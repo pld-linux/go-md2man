@@ -9,10 +9,11 @@ Source0:	https://github.com/cpuguy83/go-md2man/archive/v%{version}/%{name}-%{ver
 URL:		https://github.com/cpuguy83/go-md2man
 BuildRequires:	golang
 BuildRequires:	golang-github-russross-blackfriday-devel
-ExclusiveArch:	%{ix86} %{x8664} %{arm} aarch64 mips64 mips64le ppc64 ppc64le s390x
+BuildRequires:	rpmbuild(macros) >= 2.009
+ExclusiveArch:	%go_arches
 
 %define		_enable_debug_packages 0
-%define		gobuild(o:) go build -mod=vendor -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
+%define		gobuild(o:) %__go build -mod=vendor -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
 
 %description
 go-md2man is a golang tool using blackfriday to process markdown into
