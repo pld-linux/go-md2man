@@ -1,14 +1,13 @@
 Summary:	Process markdown into manpages
 Name:		go-md2man
-Version:	1.0.10
+Version:	2.0.2
 Release:	1
 License:	MIT
 Group:		Development/Tools
 Source0:	https://github.com/cpuguy83/go-md2man/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	2f2ab80cbee456548790449a26cc2edc
+# Source0-md5:	afd343ecba3ad16ee7261d4a95869894
 URL:		https://github.com/cpuguy83/go-md2man
-BuildRequires:	golang
-BuildRequires:	golang-github-russross-blackfriday-devel
+BuildRequires:	golang >= 1.11
 BuildRequires:	rpmbuild(macros) >= 2.009
 ExclusiveArch:	%go_arches
 
@@ -22,13 +21,8 @@ manpages.
 %prep
 %setup -q
 
-mkdir -p src/github.com/cpuguy83
-ln -s ../../../ src/github.com/cpuguy83/go-md2man
-
 %build
-export GOCACHE=$(pwd)/.go-cache
-
-%gobuild -o bin/go-md2man github.com/cpuguy83/go-md2man
+%gobuild -o bin/go-md2man github.com/cpuguy83/go-md2man/v2
 
 bin/go-md2man -in=go-md2man.1.md -out=go-md2man.1
 
